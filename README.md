@@ -1,0 +1,1 @@
+Create a .yaml file which has the credentials of the mysql server.Host,User,Password and Database name.
