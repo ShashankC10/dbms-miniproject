@@ -1,0 +1,33 @@
+<p>The seats availble on the particular train are:</p>
+<br>
+<br>
+<table border=1>
+    
+    <tr>
+        <th>Train number</th>
+        <th>Seat number</th>
+        <th>Journey date</th>
+        
+    </tr>
+    {% for i in seatavail %}
+    <tr>
+        <td>{{i[0]}}</td>
+        <td>{{i[1]}}</td>
+        <td>{{i[2]}}</td>
+    </tr>
+    {% endfor %} 
+</table>
+<br>
+<br>
+<br>
+<p>If you have not registered yet and dont have a passenger id, please 
+    <a href="http://127.0.0.1:5000/registration">click here</a>
+
+</p>
+<form method="POST" action="">
+    Passenger id<input type="text" name="passengerno"/>
+    <br><br>
+    Seat number<input type="text" name="seatno"/>
+    <br>
+    <input type="submit">
+</form>
