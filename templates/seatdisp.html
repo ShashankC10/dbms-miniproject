@@ -1,14 +1,28 @@
-<p>The seats availble on the particular train are:</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Railway ticket booking</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+  <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}"/>
+</head>
+<body>
 <br>
 <br>
-<table border=1>
-    
+<div class="table-responsive col-sm-12">
+<table class="table table-bordered table-dark table-sm">
+    <thread class="thread-white">
     <tr>
         <th>Train number</th>
         <th>Seat number</th>
         <th>Journey date</th>
         
     </tr>
+    </thread>
     {% for i in seatavail %}
     <tr>
         <td>{{i[0]}}</td>
@@ -17,17 +31,20 @@
     </tr>
     {% endfor %} 
 </table>
-<br>
-<br>
-<br>
-<p>If you have not registered yet and dont have a passenger id, please 
-    <a href="http://127.0.0.1:5000/registration">click here</a>
+</div>
+<div class="modal-dialog text-center">
+    <div class="col-sm-8 main-section">
+        <div class="modal-content">
+            <form class="form-group" method="POST">
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Seat number" name="seat">
 
-</p>
-<form method="POST" action="">
-    Passenger id<input type="text" name="passengerno"/>
-    <br><br>
-    Seat number<input type="text" name="seatno"/>
-    <br>
-    <input type="submit">
-</form>
+                 </div>
+        
+                <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i>
+                Book</button>
+            </form>
+        </div> 
+    </div>
+</div>
+</body>

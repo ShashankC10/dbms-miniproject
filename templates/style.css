@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: url(img/Indian-Railway-1.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.table1 , td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.main-section {
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 0;
+}
+.modal-content {
+    background-color: #3b4652;
+    opacity: .85;
+    padding: 12px 18px;
+    box-shadow: 0px 0px 3px #848484;
+}
+.form-group {
+    margin-bottom: 25px;
+}
+.form-group input{
+    height :42 px;
+    border-radius: 5px;
+    border: 0;
+    font-size: 18px;
+}
+button {
+    width: 40% ;
+    margin: 5px 0 15px;
+}
+.btn {
+    background-color: #27c2a5;
+    color: #fff;
+    font-size: 19px;
+    padding : 7px 14px;
+    border-radius: 5px;
+    border-bottom: 4px solid #25a890!important;
+}
+.btn:hover , .btn:focus {
+    background-color: #25a890!important;
+    border-bottom: 4px solid #25a890!important;
+}
+
+.svg-inline--fa {
+    font-size: 20px;
+    margin-right: 7px;
+}
+.register {
+    padding: 5px 0px 10px;
+}
+.register a {
+    color: #eaee0e;
+}
+table{
+ position: absolute;
+ z-index: 2;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%,-50%);
+ width: 60%; 
+ border-collapse: collapse;
+ border-spacing: 0;
+ box-shadow: 0 2px 15px rgba(64,64,64,.7);
+ border-radius: 12px 12px 0 0;
+ overflow: hidden;
+
+}
+td , th{
+ padding: 15px 20px;
+ text-align: center;
+ 
+
+}
+th{
+ background-color: #ba68c8;
+ color: #fafafa;
+ font-family: 'Open Sans',Sans-serif;
+ font-weight: 200;
+ text-transform: uppercase;
+
+}
+tr{
+ width: 100%;
+ background-color: #fafafa;
+ font-family: 'Montserrat', sans-serif;
+}
+tr:nth-child(even){
+ background-color: #eeeeee;
+}
+
+.modal-con{
+    background-color: #d0d7dd;
+    opacity: .85;
+    padding: 12px 18px;
+    box-shadow: 0px 0px 3px #848484;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,14 +1,32 @@
-<p>The seat you booked is:</p>
-<table border=1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Railway ticket booking</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+  <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}"/>
+</head>
+<body>
+<br>
+<br>
+<div class="table-responsive col-sm-12">
+<table class="table table-bordered table-dark table-sm">
+    <caption>The ticket details</caption>
+    <thread class="thread-white">
     <tr>
         <th>Seat number</th>
         <th>Train number</th>
         <th>Date</th>
-        <th>Passenger id</th>
+        <th>Mail id</th>
         <th>Total Cost</th>
         <th>route number</th>
 
     </tr>
+    </thread>
     
         {% for i in seatbooked %}
         <tr>
@@ -23,9 +41,16 @@
         {% endfor %} 
 
 </table>
-<br>
-<br>
-<form method="POST" action="">
-    
-finalize<input type="submit">
-</form>
+</div>
+<div class="modal-dialog text-center">
+    <div class="col-sm-8 main-section">
+        <div class="modal-content">
+            <form class="form-group" method="POST">
+        
+                <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i>
+                Return</button>
+            </form>
+        </div> 
+    </div>
+</div>
+</body>

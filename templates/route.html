@@ -1,17 +1,32 @@
-<p1>these are the trains which will go to your selected start and destination.
-    <br>
-    The table includes the journey date, time and the basic fare(which can increase according to the seat you select)
-</p1>
-<table border=1>
-    
-    <tr>
-        <th>Train number</th>
-        <th>Route number</th>
-        <th>Journey date</th>
-        <th>Starts</th>
-        <th>Reaches</th>
-        <th>Basefare</th>
-    </tr>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Railway ticket booking</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+  <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}"/>
+</head>
+<body>
+<br>
+<br>
+<div class="table-responsive col-sm-12" >
+<table class="table table-bordered table-dark table-sm" >
+    <caption>Trains available</caption>
+    <thead class="thead-dark">
+        <tr>
+            <th>Train number</th>
+            <th>Route number</th>
+            <th>Journey date</th>
+            <th>Starts</th>
+            <th>Reaches</th>
+            <th>Basefare</th>
+        </tr>
+    </thead>
+    <tbody>
     {% for i in routedetails %}
     <tr>
         <td>{{i[0]}}</td>
@@ -23,15 +38,27 @@
         
     </tr>
     {% endfor %} 
+    </tbody>
 </table>
-<br>
-<br>
-<br>
-<p>Enter the train number and the date of the journey</p>
-<form method="POST" action="">
-    Train number<input type="text" name="trainno"/>
-    <br>
-    Date<input type="date" name="j_date"/>
-    <br>
-    <input type="submit">
-</form>
+</div>
+<div class="modal-dialog text-center">
+    <div class="col-sm-8 main-section">
+        <div class="modal-content">
+            <form class="form-group" method="POST">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Train number" name="trainno">
+
+                 </div>
+
+                <div class="form-group">
+                    <input type="date" class="form-control" placeholder="Date" name="j_date">
+
+                </div>
+        
+                <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i>
+                Book</button>
+            </form>
+        </div> 
+    </div>
+</div>
+</body>
