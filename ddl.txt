@@ -1,0 +1,81 @@
+CREATE TABLE `reservation` (
+  `seat_no` int NOT NULL,
+  `train_no` int NOT NULL,
+  `j_date` date NOT NULL,
+  `mail_id` varchar(50) DEFAULT NULL,
+  `total_cost` int DEFAULT NULL,
+  `route_no` int NOT NULL,
+  PRIMARY KEY (`seat_no`,`train_no`,`j_date`,`route_no`),
+  KEY `reservation_ibfk_2` (`train_no`,`j_date`,`route_no`),
+  KEY `reservation_ibfk_3` (`mail_id`),
+  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`seat_no`) REFERENCES `seats` (`seat_no`),
+  CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`train_no`, `j_date`, `route_no`) REFERENCES `trainroute` (`trainno`, `j_date`, `route_no`),
+  CONSTRAINT `reservation_ibfk_3` FOREIGN KEY (`mail_id`) REFERENCES `user` (`mail_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `train` (
+  `trainno` int NOT NULL,
+  `trainname` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`trainno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `route` (
+  `route_no` int NOT NULL,
+  `start` varchar(20) DEFAULT NULL,
+  `destination` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`route_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `seats` (
+  `seat_no` int NOT NULL,
+  `class` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`seat_no`),
+  CONSTRAINT `seats_chk_1` CHECK (((`class` = _utf8mb4'first class') or (`class` = _utf8mb4'second class')))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `trainroute` (
+  `trainno` int NOT NULL,
+  `route_no` int NOT NULL,
+  `j_date` date NOT NULL,
+  `reaches` time DEFAULT NULL,
+  `starts` time DEFAULT NULL,
+  `basefare` int DEFAULT NULL,
+  PRIMARY KEY (`trainno`,`j_date`,`route_no`),
+  KEY `route_no` (`route_no`),
+  CONSTRAINT `trainroute_ibfk_2` FOREIGN KEY (`trainno`, `j_date`) REFERENCES `trainschedule` (`trainno`, `j_date`),
+  CONSTRAINT `trainroute_ibfk_3` FOREIGN KEY (`route_no`) REFERENCES `route` (`route_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `trainschedule` (
+  `trainno` int NOT NULL,
+  `j_date` date NOT NULL,
+  PRIMARY KEY (`trainno`,`j_date`),
+  CONSTRAINT `trainschedule_ibfk_1` FOREIGN KEY (`trainno`) REFERENCES `train` (`trainno`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `user` (
+  `mail_id` varchar(50) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `age` int DEFAULT NULL,
+  `phno` varchar(12) DEFAULT NULL,
+  `password` varchar(20) DEFAULT NULL,
+  `address` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`mail_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+delimiter //
+create trigger costcalculation
+before insert on reservation
+for each row
+begin
+set new.total_cost=(select basefare from trainroute as t where t.trainno=new.train_no and t.route_no=new.route_no and t.j_date=new.j_date);
+if new.seat_no>10 then
+set new.total_cost=new.total_cost+ 0.3*new.total_cost+100;
+end if;
+end//
