@@ -5,5 +5,5 @@ The repository contains the backend and the front end part which has to be run u
 Requirements:
 Python 3.7.9
 Flask 1.1.2
-Werkzeug 1.0.1
 flask_mysqldb
+MySql
