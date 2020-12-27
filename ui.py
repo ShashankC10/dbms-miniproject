@@ -71,7 +71,7 @@ def seatssel():
         return redirect('/reserve')
     dt = str(datetime.datetime.strptime(date1, '%Y-%m-%d').date())
     cur=mysql.connection.cursor()
-    seatsavailable=cur.execute("select t.trainno,s.seat_no,t.j_date from trainschedule t, seats s where t.trainno=%s and t.j_date=%s and s.seat_no not in(select r.seat_no from reservation r where r.train_no=%s and r.j_date=%s)",(trainno,dt,trainno,dt))
+    seatsavailable=cur.execute("select s.seat_no,t.j_date from trainschedule t, seats s where t.trainno=%s and t.j_date=%s and s.seat_no not in(select r.seat_no from reservation r where r.train_no=%s and r.j_date=%s)",(trainno,dt,trainno,dt))
     if seatsavailable>0:
         seatavail=cur.fetchall()
         return render_template("seatdisp.html",seatavail=seatavail)
@@ -89,8 +89,6 @@ def reserveseat():
     if request.method=='POST':
         
         return redirect('/places')
-    
-    
     cur.execute("INSERT INTO railway_ticket_management.reservation (mail_id, train_no, seat_no, j_date,route_no) VALUES (%s,%s,%s,%s,%s)",(mail_id,trainno,seatno,dt,routeno))
     mysql.connection.commit()
     currec=cur.execute("select * from reservation r where train_no=%s and seat_no=%s and j_date=%s",(trainno,seatno,dt))
