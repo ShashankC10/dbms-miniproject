@@ -1,4 +1,4 @@
-Copy paste the dml statements in a query tab of mql workbench and run it.
+Copy paste the dml statements in a query tab of mysql workbench and run it.
 
 Create a .yaml file which has the credentials of the mysql server.Host,User,Password and Database name.
 
